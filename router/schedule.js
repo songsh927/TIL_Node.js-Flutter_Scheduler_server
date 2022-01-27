@@ -31,8 +31,14 @@ let data = [
 ]
 
 router.get('/' , (req, res, next) => {
-    res.status(200).json(data);
+  res.status(200).json(data);
 });
 
+router.post('/', (req, res, next) => {
+  const newSchedule = req.body;
+  data.push(newSchedule);
+  console.log(data);
+  res.sendStatus(201);
+});
 
 export default router;
