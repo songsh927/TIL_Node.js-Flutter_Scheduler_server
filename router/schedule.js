@@ -3,7 +3,7 @@ import 'express-async-errors';
 
 const router = express.Router();
 
-let data = [
+let datas = [
     {
         "id": 1,
         "date": "2022,01,17",
@@ -31,14 +31,19 @@ let data = [
 ]
 
 router.get('/' , (req, res, next) => {
-  res.status(200).json(data);
+  res.status(200).json(datas);
 });
 
 router.post('/', (req, res, next) => {
   const newSchedule = req.body;
-  data.push(newSchedule);
-  console.log(data);
+  datas.push(newSchedule);
   res.sendStatus(201);
+});
+
+router.delete('/:id', (req, res, next) => {
+  const id = req.params.id;
+  datas = datas.filter((data) => data.id != id);
+  res.sendStatus(204);
 });
 
 export default router;
