@@ -40,6 +40,18 @@ router.post('/', (req, res, next) => {
   res.sendStatus(201);
 });
 
+router.put('/:id', (req, res, next) => {
+  const id = req.params.id;
+  const targetData = datas.find((data) => data.id == id);
+  if(targetData){
+    targetData.date = req.body.date ? req.body.date : targetData.date;
+    targetData.title = req.body.title ? req.body.title : targetData.title;
+    targetData.text = req.body.text ? req.body.text : targetData.text;
+  };
+  res.sendStatus(201);
+
+});
+
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
   datas = datas.filter((data) => data.id != id);
