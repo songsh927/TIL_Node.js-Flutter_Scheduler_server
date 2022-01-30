@@ -6,32 +6,36 @@ const router = express.Router();
 let datas = [
     {
         "id": 1,
-        "date": "2022,01,17",
+        "date": "2022.01.17",
         "title": "운동",
         "text": "6시 운동",
       },
       {
         "id": 2,
-        "date": "2022,01,17",
+        "date": "2022.01.17",
         "title": "술약속",
         "text": "8시 약속",
       },
       {
         "id": 3,
-        "date": "2022,01,18",
+        "date": "2022.01.18",
         "title": "운동",
         "text": "오전 10시 운동",
       },
       {
         "id": 4,
-        "date": "2022,01,19",
+        "date": "2022.01.19",
         "title": "도수치료",
         "text": "오후 4시",
       },
 ]
 
 router.get('/' , (req, res, next) => {
-  res.status(200).json(datas);
+  const date = req.query.date;
+  const data = date
+  ? datas.filter(data => data.date == date)
+  :datas
+  res.status(200).json(data);
 });
 
 router.post('/', (req, res, next) => {
