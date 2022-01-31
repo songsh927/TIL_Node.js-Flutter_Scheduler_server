@@ -14,7 +14,8 @@ app.use(morgan('tiny'));
 app.set('etag', false);
 
 app.use('/scheduler' , scheduleRouter);
-app.use('/memo' , memoRouter);
+
+//app.use('/memo' , memoRouter);
 
 app.use((req, res, next) => {
     res.sendStatus(404);
